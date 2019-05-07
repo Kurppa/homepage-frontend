@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom'
+import { Container, Header, Segment } from 'semantic-ui-react'
+import Menubar from './components/Menubar' 
+import Frontpage from './components/Frontpage'
+import Aboutpage from './components/Aboutpage'
+import Projectspage from './components/Projectspage'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Menubar />
+      <Container style={{ 'margin': '3rem 0rem' }}>
+        <Switch>
+          <Route exact path='/' render={() => (
+            <Frontpage />
+          )}
+          />
+          <Route exact path='/about' render={() => (
+            <Aboutpage />
+          )}/>
+          <Route exact path='/projects' render={() => (
+            <Projectspage />
+          )}/>
+          <Route render={() => (
+            <Segment>
+              <Header as='h1'>Nothing here</Header>
+            </Segment>
+          )} />
+        </Switch>
+      </Container>
+    </Router>
+  )
 }
 
-export default App;
+export default App
