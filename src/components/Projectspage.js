@@ -23,7 +23,7 @@ const cardData = [
 const Projectspage = () => {
 
   return (
-    <Card.Group style={{ overflow: 'hidden' }} itemsPerRow={2} centered>
+    <Card.Group centered>
       {
         cardData.map(project => 
           <ProjectCard

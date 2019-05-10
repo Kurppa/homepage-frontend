@@ -10,19 +10,22 @@ const ProjectCard = ({ project }) => {
   }
 
   return (
-    <Card style={{ overflow: 'hidden' }}color='black'>
-      <Image style={imageStyle} src={imgLink} />
+    <Card style={ { height: '420px' } }>
+      <Image src={imgLink} style={imageStyle} />
       <Card.Content>
-        <Card.Header as='a' href={link}>{header}</Card.Header>
-        {project.date && <Card.Meta>
-          <span className='date'>{project.date}</span>
-        </Card.Meta>}
-        <Card.Description>{text}</Card.Description>
+        <Card.Header>{ header }</Card.Header>
+        {
+          project.date && 
+            <Card.Meta>{project.date}</Card.Meta>
+        }
+        <Card.Description>
+          { text }
+        </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <a href={link}>
-          <Icon size='large' name='github square' />
-          See in github
+          <Icon name='github square' size='large' />
+          See project in github
         </a>
       </Card.Content>
     </Card>
