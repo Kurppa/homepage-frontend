@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { initializeBlogs } from './reducers/blogReducer'
+
 import { Container, Header, Segment, Message } from 'semantic-ui-react'
 import Menubar from './components/Menubar' 
 import Frontpage from './components/FrontPage.js/FrontpageMain'
@@ -12,9 +15,14 @@ import Projectspage from './components/ProjectPage/Projectspage'
 import LoginPage from './components/LoginPage'
 import BlogControl from './components/BlogControls/BlogControl'
 
-const App = () => {
+const App = (props) => {
   const [message, setMessage] = useState(null)
 
+  useEffect(() => {
+    props.initializeBlogs()
+  }, [])
+
+  //TODO different message states
   const renderMessage = () => {
     return (
       <Message>
@@ -67,4 +75,4 @@ const App = () => {
   )
 }
 
-export default App
+export default connect(null, { initializeBlogs })(App)
