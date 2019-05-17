@@ -1,27 +1,25 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
 import { Image, Header } from 'semantic-ui-react'
 import kurppa from '../../images/kurppa.png'
 
 const BlogPreview = ({ blog }) => {
+  const [show, setShow] = useState(false)
 
   //css-monsters :S
-
   const previewDivStyle = {
     width: '100%',
-    margin: '2em 0',
-    borderColor: 'black',
-    borderWidth: '4px',
     borderStyle: 'solid',
-    background: 'white' 
+    borderWidth: '1px',
+    margin: '2em 0',
+    background: '#ffd9b3',
+    borderRadius: '10px' 
   }
   
   const imageDivStyle = {
-    borderColor: 'red',
-    borderWidth: '4px',
-    borderStyle: 'solid',
     maxHeight: '250px',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    borderRadius: '10px 10px 0 0' 
+
   }
 
   const imageStyle = {
@@ -33,6 +31,10 @@ const BlogPreview = ({ blog }) => {
     overflow: 'hidden'
   }
 
+  const toggleShow = () => {
+    setShow(!show)
+  }
+
   const image = blog.image ? blog.image : kurppa
 
   return (
@@ -40,10 +42,14 @@ const BlogPreview = ({ blog }) => {
       <div style={imageDivStyle} >
         <Image style={imageStyle} src={image} />
       </div>
-      <div style={textDivStyle}>  
+      <div onClick={toggleShow} style={textDivStyle}>  
         <Header>{ blog.title }</Header>
-        {blog.content}
+        {
+          show ? blog.content : null
+        }
+        
       </div>
+
     </div>
   )
 }

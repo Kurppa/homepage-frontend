@@ -30,14 +30,15 @@ const dummyData = [
   },
 ]
 
-const FrontpageMain = (props) => {
+const FrontpageMain = () => {
   return (
     <div>
       <Header as='h1'>Recent posts</Header>
       {
         dummyData.map(blog => <BlogPreview key={blog.title} blog={blog} />) 
-      }    
+      }
     </div>
+      
   )
 }
 

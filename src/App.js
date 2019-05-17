@@ -9,11 +9,12 @@ import { initializeBlogs } from './reducers/blogReducer'
 
 import { Container, Header, Segment, Message } from 'semantic-ui-react'
 import Menubar from './components/Menubar' 
-import Frontpage from './components/FrontPage.js/FrontpageMain'
+import Frontpage from './components/FrontPage/FrontpageMain'
 import Aboutpage from './components/AboutPage/Aboutpage'
 import Projectspage from './components/ProjectPage/Projectspage'
 import LoginPage from './components/LoginPage'
 import BlogControl from './components/BlogControls/BlogControl'
+import Blog from './components/BlogView/Blog'
 
 const App = (props) => {
   const [message, setMessage] = useState(null)
@@ -64,6 +65,9 @@ const App = (props) => {
           <Route exact path='/blogging' render={() => (
             <BlogControl />
           )} />
+          <Route exact path='/blogs/:id' render={({ match }) => 
+            <Blog blog={props.blogs.find(blog => blog.id === match.params.id)} />
+          } />
           <Route render={() => (
             <Segment>
               <Header as='h1'>Nothing here</Header>
@@ -75,4 +79,10 @@ const App = (props) => {
   )
 }
 
-export default connect(null, { initializeBlogs })(App)
+const mapStateToProps = (state) => {
+  return {
+    blogs: state
+  }
+}
+
+export default connect(mapStateToProps, { initializeBlogs })(App)
