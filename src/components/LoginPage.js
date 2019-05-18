@@ -11,29 +11,37 @@ const LoginPage = (props) => {
   
   const submit = async (event) => {
     event.preventDefault()
+    if (!username.trim() || !password.trim()) {
+      props.setMessage({
+        status: 'warning',
+        message: 'Please enter password and username'
+      })
+      return 
+    }
     try {
       const responseData = await loginService.login({
         password,
         username
       })
       blogService.setToken(responseData.token)
+      props.setLogin(true) 
       props.history.push('/blogging')
     } catch (e) {
       props.setMessage({
         status: 'error',
-        message: e.message
+        message: 'Wrong credentials'
       })
     }
   }
 
   return (
-    <Grid centered columns={2}>
+    <Grid centered>
       <Grid.Column>
         <Segment>
           <Header as='h1' textAlign='center'>
           Login
           </Header>
-          <Segment>
+          <Segment style={{ margin: '3em 0' }}>
             <Form size='large' onSubmit={submit}>
               <Form.Field>
                 <label>Username</label>
