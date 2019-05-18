@@ -1,14 +1,14 @@
 import React from 'react'
 import { Header } from 'semantic-ui-react'
 
-const Chapter = (props) => {
+const Chapter = ({ chapter }) => {
 
   return (
-    <div>
-      <Header as='h3'>{props.title}</Header>
-      <div>
+    <div style={{ padding: '2em 0' }}>
+      <Header as='h3'>{chapter.title}</Header>
+      <div className={'large text'}>
         {
-          props.content
+          chapter.content
         }
       </div>
     </div>

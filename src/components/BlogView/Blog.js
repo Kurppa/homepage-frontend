@@ -1,20 +1,23 @@
 import React from 'react'
-import { Header } from 'semantic-ui-react'
+import { Header, Segment } from 'semantic-ui-react'
 
 import Chapter from './Chapter'
+import kurppa from '../../images/kurppa.png'
 
-const Blog = (props) => {
-    
+const Blog = ({ blog }) => {
+  
+  const image = blog.image ? blog.image : kurppa
+
   return (
-    <div>
-      <div>
-        <img src={props.blog.image} />
+    <Segment>
+      <div style={{ maxHeight: '300px', overflow: 'hidden' }} >
+        <img style={{ width: '100%' }} src={image} alt='blog' />
       </div>
-      <Header as='h1' >{props.blog.title}</Header>
+      <Header as='h1' dividing>{blog.title}</Header>
       {
-        props.blog.content.map(chapter => <Chapter key={chapter.title} chapter={chapter} />)
+        blog.content.map(chapter => <Chapter key={chapter.title} chapter={chapter} />)
       }
-    </div>
+    </Segment>
   )
 
 }
