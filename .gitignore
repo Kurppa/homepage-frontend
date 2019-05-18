@@ -24,4 +24,4 @@ yarn-error.log*
 
 ######### ADDED BY ME ##############################
 deploy.sh
-/images
+/src/images
