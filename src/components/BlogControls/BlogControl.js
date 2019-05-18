@@ -10,7 +10,7 @@ const BlogControl = () => {
     return (
       <Message>
         {
-          message.data
+          message.message
         }
       </Message>
     )

@@ -6,9 +6,9 @@ const ChapterForm = (props) => {
   return (
     <Segment>
       <label>Header</label>
-      <input type='text' name='header' onChange={props.onChange}></input>
+      <input value={props.title} type='text' name='header' onChange={props.onChange}></input>
       <label>Content</label>
-      <TextArea type='text' name='content' onChange={props.onChange} />
+      <TextArea value={props.content} type='text' name='content' onChange={props.onChange} />
     </Segment>
   )
 }

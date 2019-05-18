@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Chapter from './ChapterForm'
-import { Segment, Form, Button, Icon, Header } from 'semantic-ui-react'
+import { Radio, Segment, Form, Button, Icon, Header } from 'semantic-ui-react'
 
 import blogService from '../../services/blogService'
 
 const CreateBlog = (props) => {
   const [header, setHeader] = useState('')
   const [image, setImage] = useState(null)
+  const [hidden, setHidden] = useState(true)
   const [chapters, setChapters] = useState([{
     title: '',
     content: '',
@@ -24,26 +25,33 @@ const CreateBlog = (props) => {
     )
   } 
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
     try {
-      let reader = new FileReader()
-      reader.readAsDataURL(image)
-      reader.onload = async () => {
-        const blog = {
-          title: header,
-          content: [ ...chapters ],
-          image: reader.result
-        }  
+      const blog = {
+        title: header,
+        content: [ ...chapters ],
+        image: null,
+        hidden
+      }
+      if (image) {
+        let reader = new FileReader()
+        reader.readAsDataURL(image)  
+        reader.onload = async () => {
+          blog.image = reader.result
+          await blogService.create(blog)
+        }
+      } else {
         await blogService.create(blog)
       }
-      setHeader('')
       setChapters([
         {
           title: '',
           content: ''
         }
       ])
+      setHeader('')
+      setImage(null)
       props.setMessage({
         status: 'success',
         message: 'Blog succesfully created'
@@ -76,7 +84,6 @@ const CreateBlog = (props) => {
   const selectImage = (e) => {
     setImage(e.target.files[0])
   }
-
   return (
     <>
     <Segment>
@@ -85,6 +92,10 @@ const CreateBlog = (props) => {
         <label>Title</label>
         <input type='text' value={header} onChange={({ target }) => setHeader(target.value)} />
         <input onChange={selectImage} name='file' type='file' />
+        <div style={ { padding: '1em 0' } } >
+          <Radio style={ { float: 'left' } } onChange={() => setHidden(!hidden)} toggle />
+          <p style={{ float: 'left', paddingLeft: '1em' }}>{hidden ? 'hidden' : 'visible' }</p>
+        </div>
         {
           chapters.map((c, index) => <Chapter
             key={index}
@@ -94,8 +105,9 @@ const CreateBlog = (props) => {
                 : updateContent(index, e.target.value)
             }}
             content={c.content}
-            header={c.header}
-          />) 
+            title={c.title}
+          />
+          ) 
         }
         <Button color='green' type='submit'>Save blog</Button>
       </Form>
