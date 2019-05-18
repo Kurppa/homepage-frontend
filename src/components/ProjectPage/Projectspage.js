@@ -5,6 +5,7 @@ import ProjectCard from './ProjectCard'
 import Chip8pingpong from '../../images/Chip8pingpong.png'
 import gol from '../../images/gol.png'
 import convoImage from '../../images/convoImage.png'
+import thisPage from '../../images/thisPage.png'
 
 //text, link, header, imgLink, date(optional)
 const cardData = [
@@ -27,8 +28,15 @@ const cardData = [
     imgLink: convoImage,
     header: 'Messaging App',
     link: 'https://github.com/Kurppa/convoFrontend',
-    date: '2018'
-  }
+    date: '2019'
+  },
+  {
+    text: 'Source code for the frontend of this site is freely available',
+    imgLink: thisPage,
+    header: 'This site',
+    link: '#',
+    date: '2019'
+  },
 ]
 
 const Projectspage = () => {

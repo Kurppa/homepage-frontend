@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
+import { withRouter } from 'react-router-dom'
 import { Image, Header } from 'semantic-ui-react'
 import kurppa from '../../images/kurppa.png'
 
-const BlogPreview = ({ blog }) => {
+const BlogPreview = (props) => {
   const [show, setShow] = useState(false)
 
-  //css-monsters :S
+  const { blog } = props
+
   const previewDivStyle = {
     width: '100%',
     borderStyle: 'solid',
     borderWidth: '1px',
     margin: '2em 0',
-    background: '#ffd9b3',
+    background: 'white',
     borderRadius: '10px' 
   }
   
@@ -19,7 +21,6 @@ const BlogPreview = ({ blog }) => {
     maxHeight: '250px',
     overflow: 'hidden',
     borderRadius: '10px 10px 0 0' 
-
   }
 
   const imageStyle = {
@@ -35,23 +36,26 @@ const BlogPreview = ({ blog }) => {
     setShow(!show)
   }
 
+  const linkToBlog = () => {
+    props.history.push(`/blogs/${blog.id}`)
+  }
+
   const image = blog.image ? blog.image : kurppa
+  const previewChapter = blog.content[0].content 
 
   return (
     <div style={previewDivStyle}>
       <div style={imageDivStyle} >
-        <Image style={imageStyle} src={image} />
+        <Image onClick={linkToBlog} style={imageStyle} src={image} />
       </div>
       <div onClick={toggleShow} style={textDivStyle}>  
-        <Header>{ blog.title }</Header>
+        <Header as='h3' dividing>{ blog.title }</Header>
         {
-          show ? blog.content : null
+          show ? (previewChapter.length > 100 ? (previewChapter.substring(0,200) + '...'): previewChapter) : null
         }
-        
       </div>
-
     </div>
   )
 }
 
-export default BlogPreview
+export default withRouter(BlogPreview)
