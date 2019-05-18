@@ -18,20 +18,35 @@ import Blog from './components/BlogView/Blog'
 
 const App = (props) => {
   const [message, setMessage] = useState(null)
+  const [login, setLogin] = useState(null)
 
   useEffect(() => {
     props.initializeBlogs()
   }, [])
 
-  //TODO different message states
   const renderMessage = () => {
+    let messagetype = ''
+    switch(message.status) {
+    case 'error':
+      messagetype = 'error'
+      break
+    case 'success':
+      messagetype = 'success'
+      break
+    case 'warning':
+      messagetype = 'warning'
+      break
+    default:
+      break
+    }
     return (
-      <Message>
+      <Message className={messagetype}>
         {
           message.message
         }
       </Message>
     )
+
   }
 
   const createMessage = (message) => {
@@ -60,13 +75,38 @@ const App = (props) => {
             <Projectspage />
           )}/>
           <Route exact path='/login' render={() => (
-            <LoginPage setMessage={createMessage}/> 
+            <LoginPage setLogin={setLogin} setMessage={createMessage}/> 
           )} />
-          <Route exact path='/blogging' render={() => (
-            <BlogControl />
-          )} />
-          <Route exact path='/blogs/:id' render={({ match }) => 
-            <Blog blog={props.blogs.find(blog => blog.id === match.params.id)} />
+          <Route exact path='/blogging' render={() => {
+            if (login) {
+              return (
+                <BlogControl />
+              )
+            } else {
+              return(
+                <Segment>
+                  <Header as='h1'>Nothing here</Header>
+                </Segment>
+              )  
+            }
+          }}/>
+          <Route exact path='/blogs/:id' render={({ match }) => {
+            if (props.blogs.length === 0) {
+              return (
+                <div>loading...</div>
+              )
+            }
+            const blog = props.blogs.find(blog => blog.id === match.params.id)
+            if (!blog) {
+              return (
+                <div>No blog</div>
+              )
+            }
+            return (
+              <Blog blog={blog} />
+            )
+          }
+            
           } />
           <Route render={() => (
             <Segment>
