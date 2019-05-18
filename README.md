@@ -1,1 +1,1 @@
-I have said all that I want to 
+Frontend repository for my personal site
