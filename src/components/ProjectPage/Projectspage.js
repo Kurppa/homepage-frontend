@@ -34,7 +34,7 @@ const cardData = [
     text: 'Source code for the frontend of this site is freely available',
     imgLink: thisPage,
     header: 'This site',
-    link: 'https://github.com/Kurppa/personalSite',
+    link: 'https://github.com/Kurppa/personal-site',
     date: '2019'
   },
 ]
