@@ -41,7 +41,7 @@ const BlogPreview = (props) => {
   }
 
   const image = blog.image ? blog.image : kurppa
-  const previewChapter = blog.content[0].content 
+  const previewChapter = blog.content[0].type === 'text' ?  blog.content[0].content : null
 
   return (
     <div style={previewDivStyle}>
@@ -51,7 +51,7 @@ const BlogPreview = (props) => {
       <div onClick={toggleShow} style={textDivStyle}>  
         <Header as='h3' dividing>{ blog.title }</Header>
         {
-          show ? (previewChapter.length > 100 ? (previewChapter.substring(0,200) + '...'): previewChapter) : null
+          show ? (previewChapter.length > 100 && previewChapter ? (previewChapter.substring(0,200) + '...'): previewChapter) : null
         }
       </div>
     </div>

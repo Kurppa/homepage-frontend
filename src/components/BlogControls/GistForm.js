@@ -5,7 +5,7 @@ const GistForm = (props) => {
 
   return (
     <Segment color='blue'>
-      <label>Gist link</label>
+      <label>Gist id</label>
       <input value={props.link} type='text' name='link' onChange={props.onChange}></input>
     </Segment>
   )

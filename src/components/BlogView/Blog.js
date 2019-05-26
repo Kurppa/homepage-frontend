@@ -1,5 +1,6 @@
 import React from 'react'
-import { Header, Segment } from 'semantic-ui-react'
+import Gist from 'react-gist'
+import { Header, Segment, Image } from 'semantic-ui-react'
 
 import Chapter from './Chapter'
 import kurppa from '../../images/kurppa.png'
@@ -8,6 +9,24 @@ const Blog = ({ blog }) => {
   
   const image = blog.image ? blog.image : kurppa
 
+  const renderComponent = c => {
+    if (c.type === 'text') {
+      return (
+        <Chapter key={c.title} chapter={c} />
+      )
+    } else if (c.type === 'gist') {
+      return (
+        <Gist id={c.content} />
+      )
+    } else if (c.type === 'image') {
+      return (
+        <Segment>
+          <Image style={ { width:'100%', maxHeight: '400px' }} src={c.image} />
+        </Segment>
+      )
+    }
+  }
+
   return (
     <Segment>
       <div style={{ maxHeight: '300px', overflow: 'hidden' }} >
@@ -15,7 +34,7 @@ const Blog = ({ blog }) => {
       </div>
       <Header as='h1' dividing>{blog.title}</Header>
       {
-        blog.content.map(chapter => <Chapter key={chapter.title} chapter={chapter} />)
+        blog.content.map((chapter, index) => <div key={index}>{ renderComponent(chapter) }</div>)
       }
     </Segment>
   )

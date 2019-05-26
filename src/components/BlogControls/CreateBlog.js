@@ -88,7 +88,8 @@ const CreateBlog = (props) => {
         message: 'Blog succesfully created'
       })
     } catch (e) {
-      //Do we want to clear the fields if saving is unsuccesful?
+      //Do we want to clear the fields if saving is unsuccesful
+      //should fail only if title is not set or unique
       setChapters([])
       setHeader('')
       setImage(null)
@@ -140,7 +141,8 @@ const CreateBlog = (props) => {
     }
   } 
 
-  const addChapter = () => {
+  const addChapter = (e) => {
+    e.preventDefault()
     setChapters(chapters.concat({
       type: 'text',
       title: '',
@@ -148,14 +150,16 @@ const CreateBlog = (props) => {
     }))
   }
 
-  const addGist = () => {
+  const addGist = (e) => {
+    e.preventDefault()
     setChapters(chapters.concat({
       type: 'gist',
       content: ''
     }))
   }
 
-  const addImage = () => {
+  const addImage = (e) => {
+    e.preventDefault()
     setChapters(chapters.concat({
       type: 'image',
       obj: null
@@ -168,42 +172,42 @@ const CreateBlog = (props) => {
 
   return (
     <>
-    <Segment style={ { padding: '1em 2px', margin: '0px' } }>
+   
       <Segment>
         <Header as='h2'>Add a new blog</Header>
       </Segment>
       <Form onSubmit={submit}>
-        <label>Title</label>
-        <input type='text' value={header} onChange={({ target }) => setHeader(target.value)} />
-        <input onChange={selectImage} name='file' type='file' />
-        <div style={ { padding: '1em 0' } } >
-          <Radio style={ { float: 'left' } } onChange={() => setHidden(!hidden)} toggle />
-          <p style={{ float: 'left', paddingLeft: '1em' }}>{hidden ? 'hidden' : 'visible' }</p>
-        </div>
-        <Divider />
+        <Segment style={ { padding: '1em 2px', margin: '0px' } }>
+          <label>Title</label>
+          <input type='text' value={header} onChange={({ target }) => setHeader(target.value)} />
+          <input onChange={selectImage} name='file' type='file' />
+          <div style={ { padding: '1em 0' } } >
+            <Radio style={ { float: 'left' } } onChange={() => setHidden(!hidden)} toggle />
+            <p style={{ float: 'left', paddingLeft: '1em' }}>{hidden ? 'hidden' : 'visible' }</p>
+          </div>
+          <Divider />
         
-        {
-          chapters.map((c, index) => <div key={index}>{renderComponents(c, index)}</div>) 
-        }
-        
-        <div>
+          {
+            chapters.map((c, index) => <div key={index}>{renderComponents(c, index)}</div>) 
+          }
+          <Button.Group widths={3}>
+            <Button icon color='green' onClick={addChapter}>
+              <Icon name='pen square' />
+            </Button>
+            <Button icon color='blue' onClick={addGist}>
+              <Icon name='code' />
+            </Button>
+            <Button icon color='orange' onClick={addImage}>
+              <Icon name='image' />
+            </Button>
+          </Button.Group>
+        </Segment>
+        <Segment>
           <Button color='green' type='submit'>Save blog</Button>
-        </div>
+        </Segment>
       </Form>
-      
-    </Segment>
-      <Button.Group widths={3}>
-        <Button icon color='green' onClick={addChapter}>
-          <Icon name='pen square' />
-        </Button>
-        <Button icon color='blue' onClick={addGist}>
-          <Icon name='code' />
-        </Button>
-        <Button icon color='orange' onClick={addImage}>
-          <Icon name='image' />
-        </Button>
-      </Button.Group>
-      </>
+     
+    </>
   )
 }
 
