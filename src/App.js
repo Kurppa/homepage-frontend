@@ -20,8 +20,12 @@ const App = (props) => {
   const [message, setMessage] = useState(null)
   const [login, setLogin] = useState(null)
 
+  //eslint complains about missing dependency in useEffect
+  //ignore for now, not a real issue bcs this is intended to be
+  //run only on first render
   useEffect(() => {
     props.initializeBlogs()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const renderMessage = () => {
@@ -64,6 +68,7 @@ const App = (props) => {
           message ? renderMessage() : null
         }
         <Switch>
+          <Route path='/' component={BlogControl} />
           <Route exact path='/' render={() => (
             <Frontpage />
           )}

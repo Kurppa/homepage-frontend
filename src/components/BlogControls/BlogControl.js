@@ -18,11 +18,6 @@ const BlogControl = () => {
     getData()
   }, [])
 
-  const refetchBlogData = async () => {
-    const blogData = await blogService.getHidden()
-    setData(blogData)
-  }
-
   const renderMessage = () => {
     return (
       <Message>
@@ -44,7 +39,7 @@ const BlogControl = () => {
     if (active === 'create') {
       return <CreateBlog setMessage={createMessage} />
     } else if (active === 'toggle') {
-      return <ToggleShow blogs={data} refetch={refetchBlogData}/>
+      return <ToggleShow blogs={data} />
     } else if (active === 'edit') {
       return <div>asd</div>
     }

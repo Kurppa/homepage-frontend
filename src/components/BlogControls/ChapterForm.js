@@ -4,7 +4,7 @@ import { Segment, TextArea } from 'semantic-ui-react'
 const ChapterForm = (props) => {
 
   return (
-    <Segment>
+    <Segment color='green'>
       <label>Header</label>
       <input value={props.title} type='text' name='header' onChange={props.onChange}></input>
       <label>Content</label>

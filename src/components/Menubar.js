@@ -9,7 +9,7 @@ const Menubar = ({ location }) => {
   //first render sets the right active item by path from router
   useEffect(() => {
     setActiveItem(location.pathname)
-  }, [])
+  }, [location.pathname])
 
   return (
     <Menu inverted pointing>

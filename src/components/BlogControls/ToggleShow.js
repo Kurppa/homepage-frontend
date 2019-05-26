@@ -4,11 +4,12 @@ import blogService from '../../services/blogService'
 
 import { Segment, Button } from 'semantic-ui-react'
 
-const Single = ({ blog, refetch }) => {
+const Single = ({ blog }) => {
   const [hidden, setHidden] = useState(null)
 
   useEffect(() => {
     setHidden(blog.hidden)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleToggle = async () => {
@@ -17,7 +18,6 @@ const Single = ({ blog, refetch }) => {
     newBlog.hidden = !newBlog.hidden
     newBlog.content = newBlog.content.map(c => c.id)
     await blogService.update(newBlog)
-    refetch()
   }
 
   const renderButton = () => {
@@ -56,6 +56,10 @@ const Single = ({ blog, refetch }) => {
 }
 
 const ToggleShow = ({ blogs, refetch }) => {
+
+  if (!blogs) {
+    return <div>no blogs</div>
+  }
 
   return (
     <>
