@@ -4,3 +4,5 @@ Site has the functionality to create blog posts and three main views intended fo
 Still some work to do improving blog creating and editing views and adding functionality.
 
 Routing is done with React router and blog-data is held in Redux store. 
+
+![mysite](blogCreationView.png)
