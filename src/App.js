@@ -68,7 +68,6 @@ const App = (props) => {
           message ? renderMessage() : null
         }
         <Switch>
-          <Route path='/' component={BlogControl} />
           <Route exact path='/' render={() => (
             <Frontpage />
           )}

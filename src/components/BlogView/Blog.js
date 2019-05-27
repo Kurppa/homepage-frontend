@@ -21,7 +21,7 @@ const Blog = ({ blog }) => {
     } else if (c.type === 'image') {
       return (
         <Segment>
-          <Image style={ { width:'100%', maxHeight: '400px' }} src={c.image} />
+          <Image centered style={ { maxHeight: '300px' }} src={c.image} />
         </Segment>
       )
     }
@@ -29,9 +29,7 @@ const Blog = ({ blog }) => {
 
   return (
     <Segment>
-      <div style={{ maxHeight: '300px', overflow: 'hidden' }} >
-        <img style={{ width: '100%' }} src={image} alt='blog' />
-      </div>
+      <Image bordered fluid style={ { maxHeight: '300px', objectFit: 'cover'  } } src={image} alt='blog' />
       <Header as='h1' dividing>{blog.title}</Header>
       {
         blog.content.map((chapter, index) => <div key={index}>{ renderComponent(chapter) }</div>)

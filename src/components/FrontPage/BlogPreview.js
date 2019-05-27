@@ -23,10 +23,6 @@ const BlogPreview = (props) => {
     borderRadius: '10px 10px 0 0' 
   }
 
-  const imageStyle = {
-    width: '100%'
-  }
-
   const textDivStyle = {
     padding: '1em',
     overflow: 'hidden'
@@ -46,7 +42,7 @@ const BlogPreview = (props) => {
   return (
     <div style={previewDivStyle}>
       <div style={imageDivStyle} >
-        <Image onClick={linkToBlog} style={imageStyle} src={image} />
+        <Image fluid onClick={linkToBlog} src={image} />
       </div>
       <div onClick={toggleShow} style={textDivStyle}>  
         <Header as='h3' dividing>{ blog.title }</Header>
