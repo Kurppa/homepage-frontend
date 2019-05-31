@@ -7,4 +7,6 @@ Routing is done with React router and blog-data is held in Redux store.
 
 live at peikfeiring.me
 
+blog editing not finished yet
+
 ![mysite](blogCreationView.png)
