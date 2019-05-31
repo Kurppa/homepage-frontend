@@ -5,4 +5,6 @@ Still some work to do improving blog creating and editing views and adding funct
 
 Routing is done with React router and blog-data is held in Redux store. 
 
+live at peikfeiring.me
+
 ![mysite](blogCreationView.png)
