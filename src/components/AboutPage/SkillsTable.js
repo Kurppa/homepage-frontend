@@ -72,6 +72,12 @@ const SkillsTable = () => {
               <Icon color='green' name='checkmark' size='large' />
             </Table.Cell>
           </Table.Row>
+          <Table.Row>
+            <Table.Cell>Docker</Table.Cell>
+            <Table.Cell textAlign='center'>
+              <Icon color='green' name='checkmark' size='large' />
+            </Table.Cell>
+          </Table.Row>
         </Table.Body>
       </Table>
     </React.Fragment>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Image, Header } from 'semantic-ui-react'
+import { Image, Card } from 'semantic-ui-react'
 import kurppa from '../../images/kurppa.png'
 
 const BlogPreview = (props) => {
@@ -8,24 +8,34 @@ const BlogPreview = (props) => {
 
   const { blog } = props
 
-  const previewDivStyle = {
-    width: '100%',
+  const date = new Date(blog.date)
+
+  const image = blog.image ? blog.image : kurppa
+  const previewChapter = blog.content[0].type === 'text' ?  blog.content[0].content : null
+
+  const imageBgContainerStyle = {
+    borderWidth: '0 0 1px 0',
     borderStyle: 'solid',
-    borderWidth: '1px',
-    margin: '2em 0',
-    background: 'white',
-    borderRadius: '10px' 
-  }
-  
-  const imageDivStyle = {
-    maxHeight: '250px',
-    overflow: 'hidden',
-    borderRadius: '10px 10px 0 0' 
+    width: '100%',
+    display: 'block',
+    position: 'relative',
+    overflow: 'hidden'
   }
 
-  const textDivStyle = {
-    padding: '1em',
-    overflow: 'hidden'
+  const backgroundDivStyle = {
+    position: 'absolute',
+    display: 'inline-block',
+    width: '100%',
+    backgroundImage: `url(${image})`,
+    filter: 'blur(8px)',
+    height: '100%',
+    backgroundSize: '100% 100%',
+    backgroundRepeat: 'no-repeat'
+  }
+
+  const imageStyle = {
+    position: 'relative',
+    zIndex: 9999,
   }
 
   const toggleShow = () => {
@@ -36,22 +46,26 @@ const BlogPreview = (props) => {
     props.history.push(`/blogs/${blog.id}`)
   }
 
-  const image = blog.image ? blog.image : kurppa
-  const previewChapter = blog.content[0].type === 'text' ?  blog.content[0].content : null
-
-  return (
-    <div style={previewDivStyle}>
-      <div style={imageDivStyle} >
-        <Image fluid onClick={linkToBlog} src={image} />
+  return (    
+    <Card fluid>
+      <div onClick={linkToBlog} style={imageBgContainerStyle}>
+        <div style={backgroundDivStyle} ></div>
+        <Image style={imageStyle} centered src={image} size='medium' />
       </div>
-      <div onClick={toggleShow} style={textDivStyle}>  
-        <Header as='h3' dividing>{ blog.title }</Header>
-        {
-          show ? (previewChapter.length > 100 && previewChapter ? (previewChapter.substring(0,200) + '...'): previewChapter) : null
-        }
-      </div>
-    </div>
+      <Card.Content>
+        <Card.Header>{ blog.title }</Card.Header>
+        <Card.Meta>
+          <span className='date'>{ date.toLocaleDateString() }</span>
+        </Card.Meta>
+        <Card.Description onClick={toggleShow}>
+          {
+            show ? (previewChapter.length > 100 && previewChapter ? (previewChapter.substring(0,200) + '...'): previewChapter) : '...'
+          }
+        </Card.Description>
+      </Card.Content>
+    </Card>
   )
+
 }
 
 export default withRouter(BlogPreview)
