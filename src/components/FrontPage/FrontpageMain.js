@@ -9,16 +9,18 @@ const FrontpageMain = (props) => {
   return (
     <div>
       <Header as='h1'>Recent posts</Header>
-      <Card.Group>
         {
           props.blogs.length > 0 ? 
-            blogs.map(blog => <BlogPreview key={blog.title} blog={blog} />) 
+            <Card.Group>
+                {
+                    blogs.map(blog => <BlogPreview key={blog.title} blog={blog} />) 
+                }
+                </Card.Group>
             : <Segment>
               <Header as='h2'>No posts yet</Header>
             </Segment>
         }
 
-      </Card.Group>
     </div>     
   )
 }
