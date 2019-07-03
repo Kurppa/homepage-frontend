@@ -49,7 +49,7 @@ const SkillsTable = () => {
 
         <Table.Body>
           <Table.Row>
-            <Table.Cell>Sql</Table.Cell>
+            <Table.Cell>SQL</Table.Cell>
             <Table.Cell textAlign='center'>
               <Icon color='green' name='checkmark' size='large' />
             </Table.Cell>

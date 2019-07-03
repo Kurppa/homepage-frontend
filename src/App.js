@@ -22,7 +22,7 @@ const App = (props) => {
   const [login, setLogin] = useState(null)
 
   //eslint complains about missing dependency in useEffect
-  //ignore for now; not a real issue for it is meant to just run once
+  //ignore for now; not a real issue as it is meant to just run once
   useEffect(() => {
     props.initializeBlogs()
     // eslint-disable-next-line react-hooks/exhaustive-deps

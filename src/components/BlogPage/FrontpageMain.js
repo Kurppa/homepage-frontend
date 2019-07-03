@@ -13,7 +13,6 @@ const FrontpageMain = (props) => {
   })
   return (
     <div>
-      <Header as='h1'>Recent posts</Header>
       {
         blogs.length > 0 ? 
           <Card.Group>
@@ -25,7 +24,6 @@ const FrontpageMain = (props) => {
             <Header as='h2'>No posts yet</Header>
           </Segment>
       }
-
     </div>     
   )
 }
