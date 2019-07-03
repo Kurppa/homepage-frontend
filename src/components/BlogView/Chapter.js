@@ -5,8 +5,6 @@ const Chapter = ({ chapter }) => {
 
   const parts = chapter.content.split('\n')
 
-  console.log(parts.length)
-
   return (
     <div style={{ padding: '1.5em 0', wordWrap: 'break-word' }}>
       <Divider />
