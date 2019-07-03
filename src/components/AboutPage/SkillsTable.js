@@ -5,7 +5,7 @@ const SkillsTable = () => {
 
   return (
     <React.Fragment>
-      <Table celled structured>
+      <Table basic='very' celled structured style={{ textAlign: 'center' }}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell textAlign='center' colSpan={2}>Languages</Table.HeaderCell>
@@ -40,7 +40,7 @@ const SkillsTable = () => {
         </Table.Body>
       </Table>
 
-      <Table celled structured>
+      <Table basic='very' celled structured style={{ textAlign: 'center' }}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell textAlign='center' colSpan={2}>Technologies &amp; Other</Table.HeaderCell>

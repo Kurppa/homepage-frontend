@@ -6,7 +6,6 @@ import { Card } from 'semantic-ui-react'
 import { cardData } from '../../data/projects'
 
 const Projectspage = () => {
-
   return (
     <Card.Group centered>
       {
