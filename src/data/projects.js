@@ -18,7 +18,6 @@ export const cardData = [
     header: 'Messaging App',
     link: 'https://github.com/Kurppa/chatapp',
     date: '2019',
-    live: 'https://paff.me'
   },
   {
     text: 'Implementation of the classic Conway\'s game of life. Made with C++ and SMFL',

@@ -68,7 +68,7 @@ const App = (props) => {
             <Aboutpage />
           )}
           />
-          <Route exact path='/about' render={() => (
+          <Route exact path='/blogs' render={() => (
             <Frontpage />
           )}/>
           <Route exact path='/projects' render={() => (
