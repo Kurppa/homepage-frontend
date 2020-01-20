@@ -4,7 +4,7 @@ Site has the functionality to create blog posts and three main views intended fo
 
 Routing is done with React router and blog-data is held in Redux store. 
 
-live at peikfeiring.me
+live at peikfeiring.com
 
 blog editing not finished yet
 
