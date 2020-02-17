@@ -30,7 +30,7 @@ const Menubar = ({ location }) => {
       <Menu.Item as={Link} to='/blogs'
         name='Blog'
         active={activeItem === '/blogs' || activeItem === '/blogs/'}
-        onClick={() => setActiveItem('/blog')}
+        onClick={() => setActiveItem('/blogs')}
       >
         Blogs
       </Menu.Item>
