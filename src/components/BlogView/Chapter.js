@@ -3,8 +3,6 @@ import { Header, Divider } from 'semantic-ui-react'
 
 const Chapter = ({ chapter }) => {
 
-  const parts = chapter.content.split('\n')
-
   return (
     <div style={{ padding: '1.5em 0', wordWrap: 'break-word' }}>
       <Divider />
